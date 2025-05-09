@@ -1,0 +1,44 @@
+[project]
+name = "speech-mcp"
+version = "1.1.2"
+description = "Speech MCP Server with command-line interface and OpenAI STT/TTS support"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "numpy>=1.24.0",
+    "pyaudio>=0.2.13",
+    "pydub>=0.25.1",
+    "numba>=0.57.0",  # Specify a newer version of numba that supports Python 3.10
+    "psutil>=5.9.0",    # Process management
+    "soundfile>=0.12.1",  # For audio file handling and multi-speaker narration
+    "PyQt5>=5.15.0",   # UI toolkit
+    "pydantic>=2.7.2,<3.0.0",  # Explicitly specify Pydantic v2 to resolve conflict
+    "ffmpeg>=1.4",
+    "openai>=1.2.0",   # OpenAI API client for STT and TTS
+    "requests>=2.28.0",  # Required for OpenAI STT adapter
+    "pip"
+]
+
+# No optional dependencies needed since we're exclusively using OpenAI
+
+[project.scripts]
+speech-mcp = "speech_mcp.__main__:main"
+
+[build-system]
+requires = ["hatchling", "wheel", "pip", "uv"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+    "src/**/*.py",
+    "src/**/resources/**/*",
+]
+[tool.uv]
+no-build-isolation-package = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/speech_mcp"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
