@@ -20,7 +20,7 @@
 
 ```bash
 # First clone the repository
-git clone https://github.com/your-username/speech-mcp.git
+git clone https://github.com/netixc/speech-mcp.git
 cd speech-mcp
 
 # Install speech-mcp with proper dependencies
